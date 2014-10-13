@@ -1,4 +1,4 @@
-﻿/// <reference path="../../TypeScript/GameAPI.d.ts"/>
+﻿/// <reference path="../../TypeScript/GameAPI.ts"/>
 
 /// <reference path="Stages/AttractStage.ts"/>
 /// <reference path="Stages/GameStage.ts"/>
@@ -19,20 +19,6 @@ function setupGameInfo(info: GameAPI.GameInfo) {
 function setupGraphicsInfo(info: GameAPI.GraphicsInfo) {
     info.width = 200;
     info.height = 160;
-}
-
-function defaultEqualityTest(a: any, b: any): boolean {
-    return a.equals(b);
-}
-
-function arrayContains<T>(arr: Array<T>, value: T, test?: (a: T, b: T) => boolean): boolean {
-    test = test || defaultEqualityTest;
-
-    for (var i = 0; i < arr.length; ++i) {
-        if (test(arr[i], value)) return true;
-    }
-
-    return false;
 }
 
 class SmashBlox {

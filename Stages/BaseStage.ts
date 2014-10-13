@@ -1,4 +1,4 @@
-/// <reference path="../../../../TypeScript/GameAPI.BudgetBoy.ts"/>
+/// <reference path="../../../TypeScript/GameAPI.BudgetBoy.ts"/>
 
 var FADE_FRAME_COUNT: number = 6;
 var FADE_DURATION: number = 0.25;

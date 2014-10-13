@@ -1,4 +1,4 @@
-﻿/// <reference path="../../../TypeScript/GameAPI.d.ts"/>
+﻿/// <reference path="../../TypeScript/GameAPI.d.ts"/>
 
 /// <reference path="Stages/AttractStage.ts"/>
 /// <reference path="Stages/GameStage.ts"/>
@@ -77,5 +77,4 @@ class SmashBlox {
     }
 }
 
-declare var game: any;
 game = new SmashBlox();

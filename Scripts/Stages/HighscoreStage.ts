@@ -1,4 +1,6 @@
-﻿class HighscoreEntry extends GameAPI.BudgetBoy.Entity {
+﻿/// <reference path="BaseStage.ts"/>
+
+class HighscoreEntry extends GameAPI.BudgetBoy.Entity {
     rank: number;
     highscore: GameAPI.Highscore;
 
@@ -96,7 +98,7 @@ class HighscoreStage extends BaseStage {
         }
 
         this.startCoroutine(this.flashSwatches);
-        this.startCoroutine(this.fadeIn(this.waitForInput((input) => this.fadeOut(() => game.reset()))));
+        this.startCoroutine(this.fadeIn(waitForInput((input) => this.fadeOut(() => game.reset()))));
     }
 
     onSwatchChanged(swatch: GameAPI.BudgetBoy.Swatch) {

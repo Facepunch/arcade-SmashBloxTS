@@ -1,3 +1,5 @@
+/// <reference path="../../../../TypeScript/GameAPI.BudgetBoy.ts"/>
+
 var FADE_FRAME_COUNT: number = 6;
 var FADE_DURATION: number = 0.25;
 
@@ -30,18 +32,13 @@ class Particle {
     shouldRemove(): boolean { return this.lifetime <= 0; }
 };
 
-interface State extends Function { }
-
-class BaseStage extends GameAPI.BudgetBoy.Stage {
+class BaseStage extends CustomStage {
     private _fadeTiles: GameAPI.BudgetBoy.Tilemap;
     private _curFadeVal: number;
 
     private _swatchIndex: number;
 
     private _particles: Particle[];
-    private _coroutines: State[];
-
-    private __stage: GameAPI.BudgetBoy.Stage;
 
     onEnter() {
         if (swatches == null) {
@@ -53,7 +50,6 @@ class BaseStage extends GameAPI.BudgetBoy.Stage {
         }
 
         this._particles = [];
-        this._coroutines = [];
 
         this._swatchIndex = 0;
 
@@ -108,34 +104,9 @@ class BaseStage extends GameAPI.BudgetBoy.Stage {
         return fade;
     }
 
-    waitForInput(after: (input: GameAPI.Control) => State): State {
-        var wait: (self: BaseStage) => State = (self) => {
-            if (controls.a.justPressed) return after(controls.a);
-            if (controls.b.justPressed) return after(controls.b);
-            if (controls.start.justPressed) return after(controls.start);
-            if (controls.select.justPressed) return after(controls.select);
-            if (!controls.analog.isZero) return after(controls.analog);
-
-            return wait;
-        };
-
-        return wait;
-    }
-
-    wait(delay: number, after: State): State {
-        var initTime = game.time;
-
-        var wait: (self: BaseStage) => State = (self) => {
-            if ((game.time - initTime) >= delay) return after;
-            return wait;
-        };
-
-        return wait;
-    }
-
     flashSwatches(): State {
         this.nextSwatch();
-        return this.wait(1 / 16, this.flashSwatches);
+        return wait(1 / 16, this.flashSwatches);
     }
 
     nextSwatch() {
@@ -153,20 +124,8 @@ class BaseStage extends GameAPI.BudgetBoy.Stage {
         this._particles.push(new Particle(position, velocity, lifetime));
     }
 
-    startCoroutine(initialState: State) {
-        this._coroutines.push(initialState);
-    }
-
-    updateCoroutines() {
-        for (var i = this._coroutines.length - 1; i >= 0; --i) {
-            if (!(this._coroutines[i] = this._coroutines[i].call(this))) {
-                this._coroutines.splice(i, 1);
-            }
-        }
-    }
-
     onUpdate() {
-        this.updateCoroutines();
+        super.onUpdate();
 
         var indices = [];
 

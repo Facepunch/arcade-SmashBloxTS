@@ -1,5 +1,4 @@
 ﻿/// <reference path="../../../TypeScript/GameAPI.d.ts"/>
-/// <reference path="../../../TypeScript/GameAPI.BudgetBoy.d.ts"/>
 
 /// <reference path="Stages/AttractStage.ts"/>
 /// <reference path="Stages/GameStage.ts"/>

@@ -1,4 +1,4 @@
-﻿//! require "BaseStage.js"
+﻿/// <reference path="BaseStage.ts"/>
 
 class EnterScoreStage extends BaseStage {
     private _completed: boolean;
@@ -46,7 +46,7 @@ class EnterScoreStage extends BaseStage {
         if (game.isScoreHighscore(this._score)) {
             this.startCoroutine(this.beginEnterInitials(text.y));
         } else {
-            this.startCoroutine(this.waitForInput(() => game.showHighscores()));
+            this.startCoroutine(waitForInput(() => game.showHighscores()));
         }
 
         this.startCoroutine(this.flashSwatches);

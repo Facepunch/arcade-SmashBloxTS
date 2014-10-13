@@ -1,4 +1,6 @@
-﻿/// <reference path="../Entities/Ball.ts"/>
+﻿/// <reference path="BaseStage.ts"/>
+
+/// <reference path="../Entities/Ball.ts"/>
 /// <reference path="../Entities/Paddle.ts"/>
 /// <reference path="../Entities/BlockGrid.ts"/>
 
@@ -95,7 +97,7 @@ class GameStage extends BaseStage {
                 new GameAPI.Vector2f(Math.random() * 16.0 - 8.0, Math.random() * 16.0 - 8.0), Math.random() * 0.25 + 0.25);
         }
 
-        return this.wait(1 / 30, this.particleSpam);
+        return wait(1 / 30, this.particleSpam);
     }
 
     newBall(): State {
@@ -135,7 +137,7 @@ class GameStage extends BaseStage {
             this._ball.setAlive(false);
         }
 
-        return this.wait(0.5, () => {
+        return wait(0.5, () => {
             if (canContinue) {
                 return this.newBall;
             } else {

@@ -36,7 +36,7 @@ class AttractStage extends BaseStage {
         this.startCoroutine(this.flashSwatches);
         this.startCoroutine(this.insertCoinFlash);
 
-        this.startCoroutine(this.fadeIn(this.waitForInput((input) => this.fadeOut(() => {
+        this.startCoroutine(this.fadeIn(waitForInput((input) => this.fadeOut(() => {
             if (input == controls.b || input == controls.select) {
                 return game.showHighscores();
             } else {
@@ -47,7 +47,7 @@ class AttractStage extends BaseStage {
 
     insertCoinFlash(): State {
         this._insertCoin.isVisible = !this._insertCoin.isVisible;
-        return this.wait(1 / 2, this.insertCoinFlash);
+        return wait(1 / 2, this.insertCoinFlash);
     }
 
     onUpdate() {

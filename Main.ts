@@ -24,8 +24,21 @@ function setupGraphicsInfo(info: GameAPI.GraphicsInfo) {
 class SmashBlox {
     private _demo: GameAPI.Demo = null;
 
+    private _countdownImages: GameAPI.BudgetBoy.Image[];
+    private _countdownSprite: GameAPI.BudgetBoy.Sprite;
+
     onLoadResources(volume: GameAPI.ResourceCollection) {
         this._demo = volume.get("GameAPI.Demo", "attract");
+
+        this._countdownImages = [];
+        for (var i = 1; i <= 10; ++i) {
+            this._countdownImages.push(graphics.getImage("countdown", i.toString()));
+        }
+
+        var swatch = graphics.palette.findSwatch(0x000000, 0xffffff, 0x000000);
+
+        this._countdownSprite = new GameAPI.BudgetBoy.Sprite(this._countdownImages[0], swatch);
+        this._countdownSprite.position = graphics.size.sub(this._countdownSprite.size).div(2);
     }
 
     onReset() {
@@ -60,6 +73,14 @@ class SmashBlox {
         game.addInitialScore(new GameAPI.Highscore("GAR", 30));
         game.addInitialScore(new GameAPI.Highscore("JON", 20));
         game.addInitialScore(new GameAPI.Highscore("IVN", 10));
+    }
+
+    onRenderPauseScreen(timeUntilReset: number) {
+        game.renderPausedFrame();
+
+        var index = Math.max(0, Math.min(9, Math.floor(timeUntilReset)));
+        this._countdownSprite.image = this._countdownImages[index];
+        this._countdownSprite.render(graphics);
     }
 }
 

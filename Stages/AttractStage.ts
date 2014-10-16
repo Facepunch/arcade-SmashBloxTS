@@ -56,8 +56,8 @@ class AttractStage extends BaseStage {
         ++this._frame;
     }
 
-    onSwatchChanged(swatch: GameAPI.BudgetBoy.Swatch) {
-        this._title.swatch = swatch;
+    onSwatchChanged(swatch: GameAPI.BudgetBoy.SwatchIndex) {
+        this._title.swatchIndex = swatch;
     }
 
     onRender() {

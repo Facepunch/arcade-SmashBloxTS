@@ -15,14 +15,14 @@ class HighscoreEntry extends GameAPI.BudgetBoy.Entity {
         this.highscore = highscore;
     }
 
-    getSwatch(): GameAPI.BudgetBoy.Swatch {
-        return this._rankText.swatch;
+    getSwatch(): GameAPI.BudgetBoy.SwatchIndex {
+        return this._rankText.swatchIndex;
     }
 
-    setSwatch(swatch: GameAPI.BudgetBoy.Swatch) {
-        this._rankText.swatch = swatch;
-        this._nameText.swatch = swatch;
-        this._scoreText.swatch = swatch;
+    setSwatch(swatch: GameAPI.BudgetBoy.SwatchIndex) {
+        this._rankText.swatchIndex = swatch;
+        this._nameText.swatchIndex = swatch;
+        this._scoreText.swatchIndex = swatch;
     }
 
     onLoadGraphics() {
@@ -67,7 +67,7 @@ class HighscoreStage extends BaseStage {
     onEnter() {
         super.onEnter();
 
-        graphics.setClearColor(13);
+        graphics.setClearColor(GameAPI.BudgetBoy.SwatchIndex.BLACK);
 
         var titleImage = graphics.getImage("highscores");
 
@@ -79,7 +79,9 @@ class HighscoreStage extends BaseStage {
 
         this._entries = [];
 
-        for (var i = 0; i < scoreCount; ++i) {
+        var i;
+
+        for (i = 0; i < scoreCount; ++i) {
             if (i >= game.highscoreCount) break;
 
             var highscoreEntry = this.add(new HighscoreEntry(i + 1, game.getHighscore(i)), 0);
@@ -89,7 +91,7 @@ class HighscoreStage extends BaseStage {
         }
 
         if (this._highscore) {
-            for (var i = 0; i < this._entries.length; ++i) {
+            for (i = 0; i < this._entries.length; ++i) {
                 if (this._entries[i].highscore.equals(this._highscore)) {
                     this._newEntry = this._entries[i];
                     break;
@@ -101,8 +103,8 @@ class HighscoreStage extends BaseStage {
         this.startCoroutine(this.fadeIn(waitForInput((input) => this.fadeOut(() => game.reset()))));
     }
 
-    onSwatchChanged(swatch: GameAPI.BudgetBoy.Swatch) {
-        this._title.swatch = swatch;
+    onSwatchChanged(swatch: GameAPI.BudgetBoy.SwatchIndex) {
+        this._title.swatchIndex = swatch;
 
         if (this._newEntry) {
             this._newEntry.setSwatch(swatch);

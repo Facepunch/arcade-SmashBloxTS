@@ -26,7 +26,7 @@ class EnterScoreStage extends BaseStage {
     onEnter() {
         super.onEnter();
 
-        graphics.setClearColor(13);
+        graphics.setClearColor(GameAPI.BudgetBoy.SwatchIndex.BLACK);
 
         var headerImage = this._completed ? graphics.getImage("yourewinner") : graphics.getImage("gameover");
 
@@ -53,8 +53,8 @@ class EnterScoreStage extends BaseStage {
         this.startCoroutine(this.fadeIn(null));
     }
 
-    onSwatchChanged(swatch: GameAPI.BudgetBoy.Swatch) {
-        this._headerSprite.swatch = swatch;
+    onSwatchChanged(swatch: GameAPI.BudgetBoy.SwatchIndex) {
+        this._headerSprite.swatchIndex = swatch;
 
         if (this._newHighscoreSprite) {
             this._newHighscoreSprite.swatch = swatch;

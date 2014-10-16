@@ -51,7 +51,7 @@ class BlockGrid extends GameEntity {
     private _tiles: GameAPI.BudgetBoy.Tilemap;
 
     private _blockImage: GameAPI.BudgetBoy.Image;
-    private _blockSwatches: GameAPI.BudgetBoy.Swatch[];
+    private _blockSwatches: GameAPI.BudgetBoy.SwatchIndex[];
     private _tileSize: GameAPI.Vector2f;
 
     constructor(cols: number, rows: number) {

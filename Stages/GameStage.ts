@@ -19,7 +19,7 @@ class GameStage extends BaseStage {
     onEnter() {
         super.onEnter();
 
-        graphics.setClearColor(13);
+        graphics.setClearColor(GameAPI.BudgetBoy.SwatchIndex.BLACK);
 
         this._ball = this.add(new Ball(), 1);
         this._paddle = this.add(new Paddle(4, 200), 0);

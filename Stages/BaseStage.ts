@@ -11,7 +11,7 @@ var SWATCH_RGBS: number[] = [
     0x007800, 0x00B800, 0xB8F818, 0x00B800, 0x007800
 ];
 
-var swatches: GameAPI.BudgetBoy.Swatch[] = null;
+var swatches: GameAPI.BudgetBoy.SwatchIndex[] = null;
 
 class Particle {
     position: GameAPI.Vector2f;
@@ -114,9 +114,9 @@ class BaseStage extends CustomStage {
         this.onSwatchChanged(this.getCurrentSwatch());
     }
 
-    onSwatchChanged(swatch: GameAPI.BudgetBoy.Swatch) { }
+    onSwatchChanged(swatch: GameAPI.BudgetBoy.SwatchIndex) { }
 
-    getCurrentSwatch(): GameAPI.BudgetBoy.Swatch {
+    getCurrentSwatch(): GameAPI.BudgetBoy.SwatchIndex {
         return swatches[this._swatchIndex];
     }
 
@@ -145,7 +145,7 @@ class BaseStage extends CustomStage {
     onRender() {
         for (var i = 0; i < this._particles.length; i++) {
             var position = this._particles[i].position;
-            graphics.drawPoint(0, 1, new GameAPI.Vector2i(position.x, position.y));
+            graphics.drawPoint(GameAPI.BudgetBoy.SwatchIndex.WHITE, 1, new GameAPI.Vector2i(position.x, position.y));
         }
 
         this._fadeTiles.render(graphics);

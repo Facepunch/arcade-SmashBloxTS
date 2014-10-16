@@ -7,7 +7,7 @@ class Paddle extends GameEntity {
     private _rightEndSprite: GameAPI.BudgetBoy.Sprite;
     private _midSprites: GameAPI.BudgetBoy.Sprite[];
 
-    private _swatch: GameAPI.BudgetBoy.Swatch;
+    private _swatch: GameAPI.BudgetBoy.SwatchIndex;
 
     private _size: number;
     private _sizeChanged: boolean;

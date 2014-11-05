@@ -6,3 +6,14 @@ obj/*
 *.csproj.user
 
 Makefile
+
+# OS generated
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+!Icons
+ehthumbs.db
+Thumbs.db
